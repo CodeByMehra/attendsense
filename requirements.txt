@@ -1,0 +1,21 @@
+# Utilities
+numpy
+pandas
+
+
+scikit-learn #Face recognition (SVM)
+dlib-bin # Face recognition
+
+# a model trained on face images
+git+https://github.com/ageitgey/face_recognition_models
+setuptools # helps in installation from github
+
+
+# DAtabase
+supabase # it provide some size database for free like posgress mySql etc.
+bcrypt #used for password hashing
+ 
+segno  # for QR
+pillow # # helps in image preprocessing
+
+streamlit #frontend library
