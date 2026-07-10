@@ -1,6 +1,6 @@
 import streamlit as st
 
-def main():
+def home_screen():
     st.header("Hey this is Home Screen")
 
     col1, col2 = st.columns(2)
@@ -14,4 +14,4 @@ def main():
             st.session_state['login_type'] = 'student'
             st.rerun()
 
-main()
+home_screen()
