@@ -14,4 +14,3 @@ def home_screen():
             st.session_state['login_type'] = 'student'
             st.rerun()
 
-home_screen()
