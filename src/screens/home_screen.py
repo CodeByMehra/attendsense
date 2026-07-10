@@ -1,8 +1,10 @@
 import streamlit as st
+from src.components.header import header_home
 
 def home_screen():
-    st.header("Hey this is Home Screen")
 
+
+    header_home()
     col1, col2 = st.columns(2)
 
     with col1:
