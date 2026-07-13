@@ -34,18 +34,21 @@ def teacher_dashboard():
         if st.button(
             "Logout",
             type="secondary",
-            key="loginbackbtn",
+            key="teacher_logout_btn",
             shortcut="control+backspace",
         ):
             st.session_state["is_logged_in"] = False
-            st.session_state.teacher_data
+            if "teacher_data" in st.session_state:
+                del st.session_state["teacher_data"]
+            st.session_state["login_type"] = None
+            st.session_state["teacher_login_type"] = "login"
             st.rerun()
             
     st.space()
     
     if "current_teacher_tab" not in st.session_state:
         st.session_state.cuurent_teacher_tab = "take_attendence"
-        st.rerun()
+        
     tab1,tab2,tab3 = st.columns(3)
     
     with tab1:
@@ -72,9 +75,11 @@ def login_teacher(username, password):
         return False
     teacher = teacher_login(username, password)
     if teacher:
-        st.session_state.user_role='teacher'
-        st.session_state.teacher_data= teacher
+        st.session_state.user_role = "teacher"
+        st.session_state.teacher_data = teacher
         st.session_state.is_logged_in = True
+        st.session_state["login_type"] = "teacher"
+        st.session_state["teacher_login_type"] = "login"
         return True
     
     return False
@@ -107,12 +112,14 @@ def teacher_screen_login():
     teacher_username = st.text_input(
         "Enter Username",
         placeholder="eg: professor1969",
+        key="teacher_login_username",
     )
 
     teacher_password = st.text_input(
         "Enter Your Password",
         type="password",
         placeholder="Enter Password",
+        key="teacher_login_password",
     )
 
     st.divider()
@@ -125,11 +132,10 @@ def teacher_screen_login():
             icon=":material/passkey:",
             shortcut="control+Enter",
             width="stretch",
+            key="teacher_login_btn",
         ):
             if login_teacher(teacher_username, teacher_password):
-                st.toast("Welcome back!")
-                import time
-                time.sleep(1)
+                st.success("Welcome back!")
                 st.rerun()
             else:
                 st.error("Invalid username or password")
@@ -140,9 +146,9 @@ def teacher_screen_login():
             type="primary",
             icon=":material/passkey:",
             width="stretch",
-            
+            key="teacher_register_nav_btn",
         ):
-            st.session_state.teacher_login_type="register"
+            st.session_state.teacher_login_type = "register"
             st.rerun()
 
     footer_dashboard()
