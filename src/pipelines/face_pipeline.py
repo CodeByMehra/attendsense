@@ -33,7 +33,7 @@ def get_face_embeddings(image_np):
     
     for face in faces:
         shape = sp(image_np, face)
-        face_descriptor = facerec.compute_face__descriptor(image_np, shape, 1)
+        face_descriptor = facerec.compute_face_descriptor(image_np, shape, 1)
         
         encodings.append(np.array(face_descriptor))
     return encodings
@@ -94,7 +94,7 @@ def predict_attendance(class_image_np): # take photo or group photo as argument
         else:
             predicted_id = int(all_students[0])
             
-        student_embedding = X_train[y_train.index[predicted_id]]
+        student_embedding = X_train[y_train.index(predicted_id)]
         
         best_match_score = np.linalg.norm(student_embedding - encoding)
         
