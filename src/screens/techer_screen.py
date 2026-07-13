@@ -20,8 +20,52 @@ def teacher_screen():
 
 def teacher_dashboard():
     teacher_data = st.session_state.teacher_data
+    c1, c2 = st.columns(
+        2,
+        vertical_alignment="center",
+        gap="xxlarge",
+    )
+
+    with c1:
+        header_dashboard()
+
+    with c2:
+        st.subheader(f"""Welcome, {teacher_data['name']} """)
+        if st.button(
+            "Logout",
+            type="secondary",
+            key="loginbackbtn",
+            shortcut="control+backspace",
+        ):
+            st.session_state["is_logged_in"] = False
+            st.session_state.teacher_data
+            st.rerun()
+            
+    st.space()
     
-    st.header(f"""Welcome, {teacher_data['name']} """)
+    if "current_teacher_tab" not in st.session_state:
+        st.session_state.cuurent_teacher_tab = "take_attendence"
+        st.rerun()
+    tab1,tab2,tab3 = st.columns(3)
+    
+    with tab1:
+        if st.button("Take Attendence", width="stretch", icon=":material/ar_on_you:"):
+             st.session_state.cuurent_teacher_tab = "take_attendence" 
+             st.rerun()
+
+    with tab2:
+        if st.button("Manage Subjects", width="stretch", icon=":material/book_ribbon:"):
+             st.session_state.cuurent_teacher_tab = "manage_subject" 
+             st.rerun()
+             
+    with tab3:
+        if st.button("Attendence Records", width="stretch", icon=":material/cards_stack:"):
+             st.session_state.cuurent_teacher_tab = "attendance_records" 
+             st.rerun()
+            
+    footer_dashboard()
+    
+    
 
 def login_teacher(username, password):
     if not username or not password:
