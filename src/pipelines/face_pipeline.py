@@ -83,6 +83,23 @@ def predict_attendance(class_image_np): # take photo or group photo as argument
         return {}, [], 0  # {}- detected students, [] -> number of students, 0-> length of encodings
     
     clf = model_data["clf"]
-    X= model_data["X"]
-    y = model_data["y"]
+    X_train= model_data["X"]
+    y_train = model_data["y"]
     
+    all_students = sorted(list(set(y_train)))
+    
+    for encoding in encodings:
+        if len(all_students)>=2:
+            predicted_id = int(clf.predict([encoding])[0])
+        else:
+            predicted_id = int(all_students[0])
+            
+        student_embedding = X_train[y_train.index[predicted_id]]
+        
+        best_match_score = np.linalg.norm(student_embedding - encoding)
+        
+        resemblance_threshold = 0.6
+        
+        if best_match_score <= resemblance_threshold:
+            detected_student[predicted_id]= True
+    return detected_student, all_students, len(encoding)
