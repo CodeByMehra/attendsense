@@ -19,3 +19,7 @@ segno  # for QR
 pillow # # helps in image preprocessing
 
 streamlit #frontend library
+
+# voice:
+librosa #-> Load and edit audio files
+resemblyzer #-> to create embeddings of audio files
