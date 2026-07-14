@@ -89,7 +89,7 @@ def teacher_tab_take_attendance():
 
 def teacher_tab_manage_subjects():
     teacher_id = st.session_state.teacher_data['teacher_id']
-    col1, col2 = st.header(2)
+    col1, col2 = st.columns(2)
     with col1:
         st.header('Manage Subjects')
     
@@ -102,7 +102,7 @@ def teacher_tab_manage_subjects():
     if subjects:
         for sub in subjects:
             stats = [
-                ("🫂", "Students", sub['total_students']),
+                ("🙋‍♂️", "Students", sub['total_students']),
                 ("🕰️", "Classes", sub['total_classes']),
             ]
         def share_btn():
