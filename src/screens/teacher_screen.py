@@ -85,7 +85,21 @@ def teacher_dashboard():
     
 
 def teacher_tab_take_attendance():
-    st.header("Take Attendence Section")
+    teacher_id = st.session_state.teacher_data["teacher_id"]
+    st.header("Take AI Attendance Section")
+    
+    if "attendance_images" not in st.session_state:
+        st.session_state.attendance_images = []
+        
+    subjects = get_teacher_subjects(teacher_id)
+    
+    if not subjects:
+        st.warning("You haven't created any subjects yet! Please create one to begin!")
+        return
+    
+    subject_options = {f"{s['name']} - {s['subject_code']}": s['subject_id'] for s in subjects}
+    
+    col1, col2= st.column([3,1]) # ratio based 2 columns
 
 def teacher_tab_manage_subjects():
     teacher_id = st.session_state.teacher_data['teacher_id']
