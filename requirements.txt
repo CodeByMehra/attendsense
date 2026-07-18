@@ -10,7 +10,7 @@ dlib-bin # Face recognition
 
 # a model trained on face images
 git+https://github.com/ageitgey/face_recognition_models
-setuptools # helps in installation from github
+setuptools<70.0.0 # helps in installation from github
 
 
 # DAtabase
