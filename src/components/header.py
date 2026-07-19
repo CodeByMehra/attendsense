@@ -1,7 +1,7 @@
 import streamlit as st
 
 def header_home():
-    logo_url = "https://i.ibb.co/YTYGn5qV/logo.png"
+    logo_url = "https://i.ibb.co/W4yj5fv7/Attendsense-Logo.png"
     st.markdown(f"""
         <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:30px; margin-top:30px">
             <img src="{logo_url}" style="height:100px;">
@@ -12,7 +12,7 @@ def header_home():
 
 def header_dashboard():
 
-    logo_url = "https://i.ibb.co/YTYGn5qV/logo.png"
+    logo_url = "https://i.ibb.co/W4yj5fv7/Attendsense-Logo.png"
     
     st.markdown(f"""
         <div style="display:flex; align-items:center; justify-content:center; gap:10px">
